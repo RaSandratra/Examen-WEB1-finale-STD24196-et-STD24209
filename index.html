@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notinay~</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="logo-container">
+                    <i class="fas fa-sticky-note logo-icon"></i>
+                    <h1>NOTEO~</h1>
+                </div>
+                <p class="login-subtitle">Votre espace de créativité numérique</p>
+            </div>
+            
+            <div class="login-form">
+                <div class="input-group">
+                    <i class="fas fa-envelope input-icon"></i>
+                    <input type="email" id="loginEmail" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" id="loginPassword" placeholder="Mot de passe" required>
+                </div>
+                
+                <button id="loginBtn" class="auth-btn primary">
+                    <span>Se connecter</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                
+                <button id="toggleAuthMode" class="auth-btn secondary">
+                    <span id="toggleText">Pas de compte ? S'inscrire</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="mainApp" class="main-app hidden">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="logo-container">
+                        <i class="fas fa-sticky-note logo-icon"></i>
+                        <h1>NOTEO~</h1>
+                    </div>
+                </div>
+                
+                <div class="header-center">
+                    <div class="stats-display">
+                        <div class="stat-item">
+                            <i class="fas fa-file-alt"></i>
+                            <span id="totalNotes">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-star"></i>
+                            <span id="favoriteCount">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span id="importantCount">0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <button id="exportBtn" class="icon-btn export-btn" title="Exporter les notes">
+                        <i class="fas fa-download"></i>
+                    </button>
+                    <button id="themeToggle" class="icon-btn theme-btn">
+                        <i class="fas fa-sun theme-icon"></i>
+                    </button>
+                    <button id="logoutBtn" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Déconnexion</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Search Section -->
+            <section class="search-section">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Rechercher dans vos notes..." class="search-input">
+                    <button id="clearSearch" class="clear-search-btn hidden" title="Effacer la recherche">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Create Note Section -->
+            <section class="create-note-section">
+                <div class="create-note-container">
+                    <div class="section-header">
+                        <h2><i class="fas fa-plus-circle"></i> Nouvelle Note</h2>
+                        <div class="quick-actions">
+                            <button id="quickNoteBtn" class="quick-btn" title="Note rapide">
+                                <i class="fas fa-bolt"></i>
+                            </button>
+                            <button id="templateBtn" class="quick-btn" title="Modèles">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="create-note-form">
+                        <div class="input-row">
+                            <div class="input-group">
+                                <input type="text" id="noteTitle" placeholder="Titre de la note" class="note-input">
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="noteTag" placeholder="Tag (optionnel)" class="note-input tag-input">
+                            </div>
+                        </div>
+                        
+                        <div class="textarea-group">
+                            <div class="editor-toolbar">
+                                <button class="toolbar-btn" data-format="bold" title="Gras">
+                                    <i class="fas fa-bold"></i>
+                                </button>
+                                <button class="toolbar-btn" data-format="italic" title="Italique">
+                                    <i class="fas fa-italic"></i>
+                                </button>
+                                <button class="toolbar-btn" data-format="heading" title="Titre">
+                                    <i class="fas fa-heading"></i>
+                                </button>
+                                <button class="toolbar-btn" data-format="list" title="Liste">
+                                    <i class="fas fa-list-ul"></i>
+                                </button>
+                                <button class="toolbar-btn" data-format="code" title="Code">
+                                    <i class="fas fa-code"></i>
+                                </button>
+                            </div>
+                            <textarea id="noteContent" placeholder="Contenu de la note (Markdown supporté)..." class="note-textarea"></textarea>
+                            <div class="char-counter">
+                                <span id="charCount">0</span> caractères
+                            </div>
+                        </div>
+                        
+                        <div class="create-actions">
+                            <div class="note-options">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" id="isImportant">
+                                    <span class="checkmark"></span>
+                                    <span class="checkbox-label">Note importante</span>
+                                </label>
+                                
+                                <div class="color-picker">
+                                    <span class="color-label">Couleur:</span>
+                                    <div class="color-options">
+                                        <button class="color-option active" data-color="default"></button>
+                                        <button class="color-option" data-color="blue"></button>
+                                        <button class="color-option" data-color="green"></button>
+                                        <button class="color-option" data-color="yellow"></button>
+                                        <button class="color-option" data-color="red"></button>
+                                        <button class="color-option" data-color="purple"></button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button id="addNoteBtn" class="add-note-btn">
+                                <i class="fas fa-plus"></i>
+                                <span>Ajouter la note</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Notes Grid -->
+            <section class="notes-grid-section">
+                <div class="notes-columns">
+                    <!-- Important Notes -->
+                    <div class="notes-column" data-category="important">
+                        <div class="column-header">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Notes Importantes</h3>
+                            <div class="column-controls">
+                                <select id="sortImportant" class="sort-select">
+                                    <option value="date-desc">Date ↓</option>
+                                    <option value="date-asc">Date ↑</option>
+                                    <option value="alpha-asc">A-Z</option>
+                                    <option value="alpha-desc">Z-A</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="importantNotes" class="notes-container"></div>
+                    </div>
+
+                    <!-- All Notes -->
+                    <div class="notes-column" data-category="all">
+                        <div class="column-header">
+                            <h3><i class="fas fa-file-alt"></i> Toutes les Notes</h3>
+                            <div class="column-controls">
+                                <select id="sortAll" class="sort-select">
+                                    <option value="date-desc">Date ↓</option>
+                                    <option value="date-asc">Date ↑</option>
+                                    <option value="alpha-asc">A-Z</option>
+                                    <option value="alpha-desc">Z-A</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="allNotes" class="notes-container"></div>
+                    </div>
+
+                    <!-- Favorite Notes -->
+                    <div class="notes-column" data-category="favorites">
+                        <div class="column-header">
+                            <h3><i class="fas fa-star"></i> Notes Favorites</h3>
+                            <div class="column-controls">
+                                <select id="sortFavorites" class="sort-select">
+                                    <option value="date-desc">Date ↓</option>
+                                    <option value="date-asc">Date ↑</option>
+                                    <option value="alpha-asc">A-Z</option>
+                                    <option value="alpha-desc">Z-A</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="favoriteNotes" class="notes-container"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Edit Note Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Modifier la note</h3>
+                <button class="close-btn" id="closeEditModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="editTitle" placeholder="Titre" class="modal-input">
+                <input type="text" id="editTag" placeholder="Tag" class="modal-input">
+                <textarea id="editContent" placeholder="Contenu" class="modal-textarea"></textarea>
+                <div class="modal-color-picker">
+                    <span class="color-label">Couleur:</span>
+                    <div class="color-options">
+                        <button class="color-option" data-color="default"></button>
+                        <button class="color-option" data-color="blue"></button>
+                        <button class="color-option" data-color="green"></button>
+                        <button class="color-option" data-color="yellow"></button>
+                        <button class="color-option" data-color="red"></button>
+                        <button class="color-option" data-color="purple"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button id="cancelEdit" class="modal-btn secondary">Annuler</button>
+                <button id="saveEdit" class="modal-btn primary">Sauvegarder</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Templates Modal -->
+    <div id="templatesModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-copy"></i> Modèles de notes</h3>
+                <button class="close-btn" id="closeTemplatesModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="templates-grid">
+                    <div class="template-card" data-template="meeting">
+                        <i class="fas fa-users"></i>
+                        <h4>Réunion</h4>
+                        <p>Ordre du jour et notes de réunion</p>
+                    </div>
+                    <div class="template-card" data-template="todo">
+                        <i class="fas fa-tasks"></i>
+                        <h4>To-Do</h4>
+                        <p>Liste de tâches à accomplir</p>
+                    </div>
+                    <div class="template-card" data-template="idea">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Idée</h4>
+                        <p>Capturer une nouvelle idée</p>
+                    </div>
+                    <div class="template-card" data-template="journal">
+                        <i class="fas fa-book"></i>
+                        <h4>Journal</h4>
+                        <p>Entrée de journal personnel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
