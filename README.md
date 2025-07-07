@@ -70,8 +70,8 @@ Vous pouvez facilement personnaliser :
 L'application est conçue pour fonctionner sur tous les navigateurs modernes et est responsive pour une utilisation sur mobile et tablette.
 
 ## Auteur
-SANDRATRA
-Jimmy
+SANDRATRA,
+JIMMY
 
 ## Licence
 Libre d'utilisation 
