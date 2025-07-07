@@ -71,7 +71,7 @@ L'application est conçue pour fonctionner sur tous les navigateurs modernes et 
 
 ## Auteur
 SANDRATRA
-PASCAL
+Jimmy
 
 ## Licence
 Libre d'utilisation 
